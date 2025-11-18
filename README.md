@@ -49,21 +49,28 @@ Join our community of developers creating universal apps.
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 
-
 # BY MYSELF YUMEPARIN
+
 This template project represent a perfect setup, with tailwind well enabled
 I followed the tutorial (https://youtu.be/f8Z9JyB2EIE) to make to setup and also the website (https://www.nativewind.dev/docs/getting-started/installation) for the Nativewind side
 
-Sure, you'll want to go to the React Native 
+Sure, you'll want to go to the React Native
 
-## Basic Commands 
+If you want to use the reactNative here, I personnaly used like in the earlier mentionned tuto, web storm
+I also used android studio to connect my phone to the PC, and downloaded the samsung to window driver here (https://developer.android.com/studio/run/oem-usb) so my phone and PC can communitcate ? and also allow usb debugging in the DEV setting in your phone
+
+then after all that and following the page (https://developer.android.com/studio/run/oem-usb) you can open android studio and plug your phone to the PC, open/create a new projecto n android studio that you will not use and you will normaly be able to see and use your phone from android studio
+
+## Basic Commands
 
 Install dependencies
+
 ```pwsh
 npm install
 ```
 
 Run expo (options: --clear, --tunnel)
+
 ```pwsh
 npx expo start --clear --tunnel
 //--tunnel is to have "on-save" refresh on you plugged phone WHEN your PC and Phone aren't on the same network
@@ -71,6 +78,7 @@ npx expo start --clear --tunnel
 ```
 
 -After running expo
+
 ```
 › Press s │ switch to development build
 
