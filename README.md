@@ -90,3 +90,46 @@ npx expo start --clear --tunnel
 › Press m │ toggle menu
 › shift+m │ more tools
 ```
+
+
+
+## Create .apk file in Windows10/11
+
+### 📜 Script Build Local (Docker Edition)(French)
+
+
+```bash
+# 1. Lancer l'environnement Linux (Docker)
+# --network host : Pour éviter les bugs DNS/Réseau
+# -v ${PWD}:/app : Pour que le conteneur voie tes fichiers
+docker run --rm -it --network host --entrypoint bash -v ${PWD}:/app -w /app reactnativecommunity/react-native-android:latest
+
+# --- UNE FOIS DANS LE CONTENEUR ---
+
+# 2. Nettoyage préventif (Kill switch)
+# On tue les processus Java fantômes qui pourraient bloquer les fichiers
+pkill -f java || true
+find /root/.gradle -name "*.lock" -delete
+
+# 3. Configuration de la puissance (Le Secret) 🚀
+# -Xmx4g : On donne 4Go de RAM au processus (au lieu de 512Mo par défaut)
+# MaxMetaspaceSize=1g : Pour gérer les milliers de classes Kotlin d'Expo 50+
+# daemon=false : On force Gradle à s'éteindre après usage (évite les verrous)
+export ORG_GRADLE_JVMARGS="-Xmx4g -XX:MaxMetaspaceSize=1g -Dorg.gradle.daemon=false"
+
+# 4. Installation des outils
+npm install -g eas-cli
+
+# 5. Installation propre des dépendances (Fresh Start)
+rm -rf node_modules
+npm install
+
+# 6. Authentification
+eas login
+
+# 7. Lancement du Build
+eas build --platform android --profile preview --local --output ./app-release.apk
+
+```
+
+
